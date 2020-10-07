@@ -32,6 +32,17 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              esModule: false, // 不加的话会有这种情况 img属性src="[object Module]"
+            }
+          }
+        ]
+      }
     ],
   },
   plugins: [
