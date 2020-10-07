@@ -35,8 +35,14 @@ module.exports = {
         test: /\.(png|jpg|gif)$/,
         use: [
           {
-            loader: 'file-loader',
-            options: {}
+            loader: 'url-loader',
+            options: {
+              esModule: false, // 不加的话会有这种情况 img属性src="[object Module]"
+              limit: 1024 * 100, // 当大于100kb时候，将文件打包到publicPath中 
+              outputPath: 'images', // 将文件打包到哪里
+              publicPath: 'images/',
+              name: '[name].[hash:8].[ext]'
+            }
           }
         ]
       }
